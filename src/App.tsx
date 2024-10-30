@@ -27,9 +27,8 @@ import "react-datepicker/dist/react-datepicker.css";
 function App() {
   const [anchor, setAnchor] = useState<any>({ x: 0, y: 0 });
   const id = useId();
-  const [events, setEvents] = useState<any>([
-    { title: "Meeting", start: new Date(), id: uuidv4() },
-  ]);
+  const [events, setEvents] = useState<any>([]);
+  console.log("events: ", events);
   const [showPopover, setShowPopover] = useState(false);
   const [eventId, setEventId] = useState("");
 
@@ -167,6 +166,7 @@ function App() {
                   end: "dayGridMonth,timeGridWeek,timeGridDay",
                 }}
                 initialView="dayGridMonth"
+                editable
                 eventColor="#3B86FF"
                 weekends={false}
                 events={events}
@@ -210,6 +210,21 @@ function App() {
                     y: selectedEvent.jsEvent.pageY,
                   });
                   setShowPopover(true);
+                }}
+                eventDrop={(eventDropInfo) => {
+                  console.log("eventDropInfo: ", eventDropInfo);
+
+                  setEvents(
+                    // @ts-ignore
+                    events.map((event) =>
+                      event.id === eventDropInfo.event.id
+                        ? {
+                            ...event,
+                            start: eventDropInfo.event.start,
+                          }
+                        : event
+                    )
+                  );
                 }}
               />
             </div>
