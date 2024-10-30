@@ -25,7 +25,7 @@ import s from "./App.module.scss";
 import "react-datepicker/dist/react-datepicker.css";
 
 function App() {
-  const [anchor, setAnchor] = useState<any>({});
+  const [anchor, setAnchor] = useState<any>({ x: 0, y: 0 });
   const id = useId();
   const [events, setEvents] = useState<any>([
     { title: "Meeting", start: new Date(), id: uuidv4() },
@@ -76,7 +76,7 @@ function App() {
       }
 
       resetForm();
-      setAnchor({});
+      setAnchor({ x: 0, y: 0 });
     },
     validationSchema: Yup.object({
       name: Yup.string().required("Field is required"),
@@ -226,7 +226,7 @@ function App() {
               className={s.popoverCloseButton}
               onClick={() => {
                 setShowPopover(false);
-                setAnchor({});
+                setAnchor({ x: 0, y: 0 });
               }}
             >
               X
@@ -285,12 +285,12 @@ function App() {
                 onClick={() => {
                   if (!eventId) {
                     setShowPopover(false);
-                    setAnchor({});
+                    setAnchor({ x: 0, y: 0 });
                   } else {
                     // @ts-ignore
                     setEvents(events.filter((event) => event.id !== eventId));
                     setShowPopover(false);
-                    setAnchor({});
+                    setAnchor({ x: 0, y: 0 });
                   }
                 }}
               >
