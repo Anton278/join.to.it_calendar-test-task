@@ -13,3 +13,7 @@ body {
 :root {
   --fc-today-bg-color: #f5f6fa !important;
 }
+
+.fc-timegrid-slot {
+  height: 50px !important;
+}

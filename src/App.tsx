@@ -1,4 +1,4 @@
-import { useEffect, useId, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { Formik, Form, Field, useFormik } from "formik";
 import * as Yup from "yup";
@@ -31,17 +31,29 @@ function App() {
   console.log("events: ", events);
   const [showPopover, setShowPopover] = useState(false);
   const [eventId, setEventId] = useState("");
+  const popoverRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const onClick = (e: any) => {
-      console.log("click: ", e);
+    const onClick = (e: MouseEvent) => {
+      if (
+        popoverRef.current &&
+        !popoverRef.current.contains(e.target as Node)
+      ) {
+        setShowPopover(false); // Close the popover
+        setAnchor({ x: 0, y: 0 });
+      }
     };
-    document.addEventListener("click", onClick);
+
+    if (showPopover) {
+      document.addEventListener("click", onClick);
+    } else {
+      document.removeEventListener("click", onClick);
+    }
 
     return () => {
       document.removeEventListener("click", onClick);
     };
-  }, []);
+  }, [showPopover]);
 
   const formik = useFormik({
     initialValues: { name: "", date: null, time: null, notes: "" },
@@ -57,7 +69,11 @@ function App() {
       if (!eventId) {
         setEvents([
           ...events,
-          { title: values.name, start: combinedDateTime, id: uuidv4() },
+          {
+            title: values.name,
+            start: combinedDateTime,
+            id: uuidv4(),
+          },
         ]);
       } else {
         setEvents(
@@ -166,8 +182,16 @@ function App() {
                   end: "dayGridMonth,timeGridWeek,timeGridDay",
                 }}
                 initialView="dayGridMonth"
+                eventBackgroundColor="#3B86FF"
+                slotDuration="02:00:00"
+                slotLabelInterval="02:00"
+                height="auto"
+                slotLabelFormat={{
+                  hour: "numeric",
+                  minute: "2-digit",
+                }}
                 editable
-                eventColor="#3B86FF"
+                eventDisplay="block"
                 weekends={false}
                 events={events}
                 eventContent={renderEventContent}
@@ -236,6 +260,7 @@ function App() {
               showPopover && s.eventPopoverVisible
             }`}
             style={{ top: anchor.y, left: anchor.x }}
+            ref={popoverRef}
           >
             <button
               className={s.popoverCloseButton}
@@ -329,12 +354,7 @@ function App() {
 
 // a custom render function
 function renderEventContent(eventInfo: any) {
-  return (
-    <>
-      <b>{eventInfo.timeText}</b>
-      <i>{eventInfo.event.title}</i>
-    </>
-  );
+  return <span className={s.eventTitle}>{eventInfo.event.title}</span>;
 }
 
 export default App;

@@ -6,6 +6,7 @@
 .aside {
   width: 260px;
   background: #43425D;
+  flex-shrink: 0;
 }
 
 .asideHeader {
@@ -227,4 +228,10 @@
   .popoverFooterButtonSave {
     color: #6A6996;
   }
+}
+
+.eventTitle {
+  font-size: 13px;
+  line-height: 20px;
+  color: #fff;
 }
