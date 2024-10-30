@@ -34,10 +34,13 @@ function App() {
   const popoverRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    // @ts-ignore
+    let timeoutId;
     const onClick = (e: MouseEvent) => {
       if (
         popoverRef.current &&
-        !popoverRef.current.contains(e.target as Node)
+        !popoverRef.current.contains(e.target as Node) &&
+        showPopover
       ) {
         setShowPopover(false); // Close the popover
         setAnchor({ x: 0, y: 0 });
@@ -45,12 +48,16 @@ function App() {
     };
 
     if (showPopover) {
-      document.addEventListener("click", onClick);
+      timeoutId = setTimeout(() => {
+        document.addEventListener("click", onClick);
+      }, 0);
     } else {
       document.removeEventListener("click", onClick);
     }
 
     return () => {
+      // @ts-ignore
+      clearTimeout(timeoutId);
       document.removeEventListener("click", onClick);
     };
   }, [showPopover]);
