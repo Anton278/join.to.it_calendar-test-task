@@ -283,18 +283,25 @@ function App() {
               <button
                 className={s.popoverFooterButtonCancel}
                 onClick={() => {
-                  setShowPopover(false);
-                  setAnchor({});
+                  if (!eventId) {
+                    setShowPopover(false);
+                    setAnchor({});
+                  } else {
+                    // @ts-ignore
+                    setEvents(events.filter((event) => event.id !== eventId));
+                    setShowPopover(false);
+                    setAnchor({});
+                  }
                 }}
               >
-                Cancel
+                {eventId ? "Discard" : "Cancel"}
               </button>
               <button
                 className={s.popoverFooterButtonSave}
                 type="submit"
                 form={`${id}-form`}
               >
-                Save
+                {eventId ? "Edit" : "Save"}
               </button>
             </div>
           </div>,
