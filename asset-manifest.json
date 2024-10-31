@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/join.to.it_calendar-test-task/static/css/main.fefecf1b.css",
+    "main.js": "/join.to.it_calendar-test-task/static/js/main.074b6cc7.js",
+    "index.html": "/join.to.it_calendar-test-task/index.html",
+    "static/media/help-center.svg": "/join.to.it_calendar-test-task/static/media/help-center.9a1b3b91e65401a821b1a01df517508a.svg",
+    "static/media/web.svg": "/join.to.it_calendar-test-task/static/media/web.448a99446186aa5e40a394bdb680df2e.svg",
+    "static/media/gear.svg": "/join.to.it_calendar-test-task/static/media/gear.46055707f5bc057bcc862756a8c57076.svg",
+    "static/media/home.svg": "/join.to.it_calendar-test-task/static/media/home.3229bbb9029e9ab467caccd2d3f368ec.svg",
+    "static/media/mail.svg": "/join.to.it_calendar-test-task/static/media/mail.052e304e77c463bbe11f0dd87acdd67f.svg",
+    "static/media/invoices.svg": "/join.to.it_calendar-test-task/static/media/invoices.c74adf0df50846bf207ae6286ef73a10.svg",
+    "static/media/arrow-down.svg": "/join.to.it_calendar-test-task/static/media/arrow-down.41f9a6d0a6d85ea55ede7c48b37d5d26.svg",
+    "main.fefecf1b.css.map": "/join.to.it_calendar-test-task/static/css/main.fefecf1b.css.map",
+    "main.074b6cc7.js.map": "/join.to.it_calendar-test-task/static/js/main.074b6cc7.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.fefecf1b.css",
+    "static/js/main.074b6cc7.js"
+  ]
+}
