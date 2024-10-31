@@ -84,9 +84,10 @@ function EventPopover({
     let timeoutId: ReturnType<typeof setTimeout> | undefined;
     const onClick = (e: MouseEvent) => {
       if (
-        popoverRef.current &&
-        !popoverRef.current.contains(e.target as Node) &&
-        open
+        !popoverRef?.current?.contains(e.target as Node) &&
+        open &&
+        // @ts-ignore
+        !e.target?.closest(".react-datepicker")
       ) {
         onClose && onClose();
       }
@@ -104,7 +105,7 @@ function EventPopover({
       clearTimeout(timeoutId);
       document.removeEventListener("click", onClick);
     };
-  }, [open]);
+  }, [open, popoverRef]);
 
   useEffect(() => {
     formik.setTouched({});
