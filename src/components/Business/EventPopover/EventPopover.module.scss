@@ -1,0 +1,107 @@
+.eventPopover {
+  visibility: hidden;
+  opacity: 0;
+  z-index: 1;
+  padding: 22px 26px;
+  border: 1px solid #43425D;
+  border-radius: 10px;
+  box-shadow: 0px 3px 18px rgba(0, 0, 0, 0.16);
+  position: absolute;
+  background: #fff;
+  transition: opacity 0.3s ease-out;
+  transform: translate(-50%, 20px);
+
+  &::before {
+    content: '';
+    width: 0; 
+    height: 0; 
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid #43425D;
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+.eventPopoverVisible {
+  visibility: visible;
+  opacity: 1;
+}
+
+.popoverCloseButton {
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  border: 1px solid #000;
+  border-radius: 50%;
+  position: absolute;
+  top: 7px;
+  right: 7px;
+}
+
+.popoverBody {
+  margin-top: 22px;
+}
+
+.popoverField {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  row-gap: 2px;
+  padding-bottom: 40px;
+
+  label {
+    font-size: 14px;
+    line-height: 20px;
+    color: #D6D6D6;
+    width: fit-content;
+  }
+  input {
+    border: none;
+    font-size: 14px;
+    font-family: inherit;
+    padding: 2px 4px;
+    border-bottom: 1px solid #D6D6D6;
+    outline: none;
+  }
+
+  &:last-child {
+    padding-bottom: 40px;
+  }
+}
+
+.popoverFieldError {
+  position: absolute;
+  bottom: 20px;
+  font-size: 12px;
+  color: #ef5350;
+  margin: 0;
+}
+
+.popoverFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  button {
+    padding: 0;
+    background: transparent;
+    border: none;
+    font-family: inherit;
+    font-size: 12px;
+    line-height: 20px;
+    cursor: pointer;
+  }
+
+  .popoverFooterButtonCancel {
+    color: #FF5F5F;
+  }
+  .popoverFooterButtonSave {
+    color: #6A6996;
+  }
+}

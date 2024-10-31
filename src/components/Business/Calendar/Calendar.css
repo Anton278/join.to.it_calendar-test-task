@@ -1,0 +1,13 @@
+:root {
+  --fc-today-bg-color: #f5f6fa;
+}
+
+.fc-timegrid-slot {
+  height: 50px !important;
+}
+
+.eventTitle {
+  font-size: 13px;
+  line-height: 20px;
+  color: #fff;
+}
